@@ -1,0 +1,17 @@
+id: python-run-test10
+namespace: dev
+
+tasks:
+  - id: run-python
+    type: io.kestra.plugin.scripts.python.Script
+    runner: DOCKER
+    docker:
+      image: python:3.10-slim  # <-- clean Python image with pip
+    beforeCommands:
+      - pip install pandas
+    script: |
+      import pandas as pd
+      df = pd.DataFrame({"name": ["Alice", "Bob"], "age": [30, 25]})
+      print("✅ Kestra Python Test:")
+      print(df)
+
